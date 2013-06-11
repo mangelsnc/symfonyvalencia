@@ -1,0 +1,7 @@
+parameters:
+    sf_vlc_contact.form.class: SfVlc\MainBundle\Service\ContactFormManager
+    
+services:
+    sf_vlc_contact.form:
+        class: %sf_vlc_contact.form.class%
+        arguments: [@form.factory]

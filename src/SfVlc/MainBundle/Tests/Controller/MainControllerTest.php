@@ -70,6 +70,52 @@ class MainControllerTest extends HandyTestCase {
         // Assert
         $this->assertTrue($crawler->filter('a#logout-link')->count() > 0);
     }
+    
+    /**
+     * @test
+     */
+    public function itShouldExistAContactPage(){
+        $client = static::createClient();
+        $client->request('GET', '/contacto');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        
+    }
+    
+    /**
+     * @test
+     */
+    public function itShouldExistAContactForm(){
+        //Arrange    
+        $client = static::createClient();
+        
+        //Act
+        $crawler = $client->request("GET", "/contacto");
+        $form = $crawler->filter("#contacto")->count();
+        
+        //Assert
+        $this->assertEquals(1,$form);
+        
+    }
+    
+    /**
+     * @test
+     */
+    public function itShouldSendAnEmailWhenSubmitted(){
+        //Arrange
+        $client = static::createClient();
+        
+        //Act
+        $crawler = $client->request("GET","/contacto");
+        $form = $crawler->filter("#contacto")->form();
+        $form['contacto_form[nombre]'] = "test";
+        $form['contacto_form[email]'] = "test@mail.com";
+        $form['contacto_form[asunto]'] = "test";
+        $form['contacto_form[mensaje]'] = "Esto es un test";
+        $crawler = $client->submit($form);
+        
+        //Assert
+        $this->assertTrue($client->getResponse()->isSuccessful());
+    }
 
 
     private function createUser($username, $password) {

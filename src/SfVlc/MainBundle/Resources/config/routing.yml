@@ -5,3 +5,7 @@ sf_vlc_main_homepage:
 blade_tester_light_news_bundle:
     resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
     prefix:   /news        #choose the prefix you want
+    
+contacto:
+    pattern: /contacto
+    defaults: { _controller: SfVlcMainBundle:Main:contacto }

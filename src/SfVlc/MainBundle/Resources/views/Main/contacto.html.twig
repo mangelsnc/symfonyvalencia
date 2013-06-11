@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Contacta con Nosotros!</h1>
+    <form id="contacto" action="{{ path("contacto") }}" {{ form_enctype(form) }} method="post">
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" id="submit-contacto" value="Enviar!" />
+    </form>
+{% endblock %}

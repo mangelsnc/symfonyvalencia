@@ -13,3 +13,7 @@ web/bundles/*
 app/config/parameters.ini
 app/config/parameters_test.ini
 app/config/parameters.yml
+
+# Others
+.project
+.DS_Store
